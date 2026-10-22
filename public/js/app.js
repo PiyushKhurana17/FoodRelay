@@ -1506,23 +1506,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // TOP BAR RESET
   // ==========================================
 
-  btnResetData.addEventListener('click', async () => {
-    if (!confirm('Are you sure you want to reset all data and event logs?')) return;
-    try {
-      await fetch('/api/demo/reset', { method: 'POST' });
-      offlineVerifier.clearScannedHashes();
-      offlineVerifier.clearOfflineQueue();
-      renderOfflineQueue();
-      smsChatMessages.innerHTML = `
-        <div class="chat-bubble system-alert">
-          Event store reset. Clean state initialized.
-        </div>`;
-      await fetchProjections();
-      await fetchEvents();
-    } catch (err) {
-      alert('Error resetting data: ' + err.message);
-    }
-  });
+  if (btnResetData) {
+    btnResetData.addEventListener('click', async () => {
+      if (!confirm('Are you sure you want to reset all data and event logs?')) return;
+      try {
+        await fetch('/api/demo/reset', { method: 'POST' });
+        offlineVerifier.clearScannedHashes();
+        offlineVerifier.clearOfflineQueue();
+        renderOfflineQueue();
+        smsChatMessages.innerHTML = `
+          <div class="chat-bubble system-alert">
+            Event store reset. Clean state initialized.
+          </div>`;
+        await fetchProjections();
+        await fetchEvents();
+      } catch (err) {
+        alert('Error resetting data: ' + err.message);
+      }
+    });
+  }
 
   // Initial load
   fetchProjections();
