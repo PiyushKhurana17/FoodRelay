@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnFocusNotepad = document.getElementById('btnFocusNotepad');
   const btnCopyNotepad = document.getElementById('btnCopyNotepad');
   const btnClearNotepad = document.getElementById('btnClearNotepad');
-  const btnSampleScan = document.getElementById('btnSampleScan');
   const statScanCount = document.getElementById('statScanCount');
   const statLastScanTime = document.getElementById('statLastScanTime');
   const chkAutoVerifyOnScan = document.getElementById('chkAutoVerifyOnScan');
@@ -836,7 +835,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div style="font-size: 1.8rem; margin-bottom: 0.35rem; opacity: 0.6;">📡</div>
         <div style="font-weight: 600; color: var(--text-muted);">No QR Code Scanned Yet</div>
         <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 0.2rem;">
-          Point your physical handheld scanner at the QR code or click "Sample Scan" to view decoded details.
+          Point your physical handheld scanner at the QR code to view decoded details.
         </div>
       </div>
     `;
@@ -1129,21 +1128,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (statLastScanTime) statLastScanTime.textContent = 'Notepad cleared';
       renderEmptyDetails();
       if (collectorVerificationResult) collectorVerificationResult.innerHTML = '';
-    });
-  }
-
-  if (btnSampleScan && scannerNotepad) {
-    btnSampleScan.addEventListener('click', () => {
-      let tokenToScan = donorDisplayToken ? donorDisplayToken.textContent : '';
-      if (!tokenToScan || tokenToScan.includes('---') || tokenToScan.includes('Accept an offer')) {
-        const currentWindow = Math.floor(Date.now() / 60000);
-        tokenToScan = `FR1.DON-9011.RELAY-890.50.${currentWindow}.4A8C1F9E3D2B`;
-      }
-
-      const cur = scannerNotepad.value;
-      scannerNotepad.value = cur ? (cur.endsWith('\n') ? cur + tokenToScan + '\n' : cur + '\n' + tokenToScan + '\n') : tokenToScan + '\n';
-      scannerNotepad.scrollTop = scannerNotepad.scrollHeight;
-      handleScannedCode(tokenToScan);
     });
   }
 
