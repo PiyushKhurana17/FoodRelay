@@ -9,6 +9,15 @@
  * 5. Original Standard Workflow Compatibility
  */
 
+// Load .env file natively if present
+if (typeof process.loadEnvFile === 'function') {
+  try {
+    process.loadEnvFile();
+  } catch (err) {
+    // .env is optional if environment variables are provided by host
+  }
+}
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
