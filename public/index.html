@@ -378,6 +378,19 @@
             </div>
             <div class="token-raw-string" id="donorDisplayToken">FR1.DON-0000.RELAY-000.50.0.SIGNATURE</div>
 
+            <!-- Dynamic Scannable QR Code Box (Scan with physical handheld barcode/QR scanner) -->
+            <div class="donor-qr-card" style="margin: 0.85rem 0; background: rgba(0, 0, 0, 0.45); border: 1px dashed var(--border-bright); border-radius: var(--radius-md); padding: 0.85rem; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.45rem; letter-spacing: 0.05em; font-weight: 700;">
+                📷 Scannable Dynamic QR Code
+              </div>
+              <div id="donorQrCanvas" style="display: inline-flex; justify-content: center; align-items: center; background: #ffffff; padding: 8px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); min-width: 156px; min-height: 156px;">
+                <img id="donorQrCodeImg" src="" alt="Dynamic Scannable QR Code" style="width: 140px; height: 140px; display: block;">
+              </div>
+              <div style="font-size: 0.68rem; color: var(--accent-blue); margin-top: 0.45rem;">
+                Point physical barcode scanner at this QR code to scan
+              </div>
+            </div>
+
             <div style="margin-top: 0.75rem; display: flex; justify-content: center;">
               <button type="button" id="btnCopyTokenToScanner" class="btn btn-outline btn-sm">
                 📋 Transfer Code to Collector Device
@@ -393,19 +406,100 @@
             <span style="font-size: 0.7rem; color: var(--accent-blue);">Offline Validator</span>
           </div>
 
-          <div class="form-group">
-            <label class="form-label" for="inputScannedToken">Scan or Enter Rotating Token:</label>
-            <textarea id="inputScannedToken" class="form-control" rows="3" placeholder="FR1.<donationId>.<offerCode>.<meals>.<epochWindow>.<sig>" style="font-family: var(--font-mono); font-size: 0.75rem;"></textarea>
+          <!-- Scanner Notepad Component (acts like Windows Notepad for physical barcode/QR scanner) -->
+          <div class="scanner-notepad-card">
+            <div class="notepad-header">
+              <div class="notepad-title">
+                <span class="notepad-icon">📝</span>
+                <div>
+                  <strong>Barcode / QR Scanner Notepad</strong>
+                  <div class="notepad-subtitle">Hardware USB/Bluetooth Scanner Input Stream</div>
+                </div>
+              </div>
+              <div class="notepad-status" id="notepadStatusIndicator">
+                <span class="status-dot online"></span>
+                <span id="notepadStatusText">Scanner Ready</span>
+              </div>
+            </div>
+
+            <div class="notepad-toolbar">
+              <button type="button" class="np-btn" id="btnFocusNotepad" title="Click to focus notepad before scanning">
+                🎯 Focus Notepad
+              </button>
+              <button type="button" class="np-btn" id="btnCopyNotepad" title="Copy all scanned lines">
+                📋 Copy All
+              </button>
+              <button type="button" class="np-btn" id="btnClearNotepad" title="Clear notepad content">
+                🗑️ Clear
+              </button>
+              <button type="button" class="np-btn np-btn-accent" id="btnSampleScan" title="Simulate a real barcode scanner input">
+                ⚡ Sample Scan
+              </button>
+            </div>
+
+            <div class="notepad-editor-wrap">
+              <textarea 
+                id="scannerNotepad" 
+                class="notepad-textarea" 
+                rows="5" 
+                placeholder="/* SCANNER NOTEPAD */&#10;1. Point your barcode scanner at the QR code and pull the trigger.&#10;2. Scanned data streams here line-by-line just like Windows Notepad.&#10;3. Decoded details will instantly display in the inspector below."
+                spellcheck="false"
+              ></textarea>
+            </div>
+
+            <div class="notepad-footer">
+              <div class="notepad-stats">
+                <span id="statScanCount">0 scans recorded</span>
+                <span class="stats-sep">•</span>
+                <span id="statLastScanTime">Waiting for scan</span>
+              </div>
+              <div class="notepad-options">
+                <label class="notepad-opt-label">
+                  <input type="checkbox" id="chkAutoVerifyOnScan" checked>
+                  <span>Auto-verify on scan</span>
+                </label>
+              </div>
+            </div>
           </div>
 
-          <div style="display: flex; gap: 0.75rem; margin-bottom: 1.25rem;">
-            <button type="button" id="btnVerifyCollector" class="btn btn-primary btn-block">
-              🛡️ Verify Code (Works 100% Offline)
-            </button>
+          <!-- Scanned QR Code Details Inspector -->
+          <div class="scanned-details-card" id="scannedDetailsCard">
+            <div class="scanned-details-header">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1.1rem;">🔍</span>
+                <div>
+                  <strong style="font-size: 0.88rem; color: #fff;">Scanned QR Code Details</strong>
+                  <div style="font-size: 0.68rem; color: var(--text-muted);">Decoded payload inspector & cryptographic proof</div>
+                </div>
+              </div>
+              <span class="tab-badge" id="badgeScanType" style="background: rgba(16, 185, 129, 0.2); color: var(--primary-light);">
+                Awaiting Scan
+              </span>
+            </div>
+
+            <div id="scannedDetailsContent" class="scanned-details-body">
+              <div class="details-empty-state">
+                <div style="font-size: 1.8rem; margin-bottom: 0.35rem; opacity: 0.6;">📡</div>
+                <div style="font-weight: 600; color: var(--text-muted);">No QR Code Scanned Yet</div>
+                <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 0.2rem;">
+                  Point your physical handheld scanner at the QR code or click "Sample Scan" to view decoded details.
+                </div>
+              </div>
+            </div>
+
+            <!-- Action button for manual verification -->
+            <div id="scannedActionRow" style="margin-top: 0.85rem;">
+              <button type="button" id="btnVerifyCollector" class="btn btn-primary btn-block">
+                🛡️ Verify Code (Works 100% Offline)
+              </button>
+            </div>
           </div>
 
-          <!-- Offline Verification Output -->
-          <div id="collectorVerificationResult" style="margin-bottom: 1.25rem; font-size: 0.8rem;">
+          <!-- Hidden compatibility input to preserve all existing logic -->
+          <textarea id="inputScannedToken" style="display: none;"></textarea>
+
+          <!-- Offline Verification Output Banner -->
+          <div id="collectorVerificationResult" style="margin-top: 1rem; margin-bottom: 1.25rem; font-size: 0.8rem;">
             <!-- Verification result banner -->
           </div>
 
@@ -583,6 +677,7 @@
   </main>
 
   <!-- Client-Side Scripts -->
+  <script src="js/qrcode.min.js"></script>
   <script src="js/offlineVerifier.js"></script>
   <script src="js/app.js"></script>
 </body>

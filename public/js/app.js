@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const phoneQuickChips = document.getElementById('phoneQuickChips');
   const splitInspectorContainer = document.getElementById('splitInspectorContainer');
 
-  // Tab 3 Handoff Elements
+  // Tab 3 Handoff & Scanner Notepad Elements
   const toggleOfflineMode = document.getElementById('toggleOfflineMode');
   const networkStatusBar = document.getElementById('networkStatusBar');
   const networkStatusText = document.getElementById('networkStatusText');
@@ -56,8 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const timerCircleProgress = document.getElementById('timerCircleProgress');
   const donorDisplayPin = document.getElementById('donorDisplayPin');
   const donorDisplayToken = document.getElementById('donorDisplayToken');
+  const donorQrCanvas = document.getElementById('donorQrCanvas');
+  const donorQrCodeImg = document.getElementById('donorQrCodeImg');
   const btnCopyTokenToScanner = document.getElementById('btnCopyTokenToScanner');
   const inputScannedToken = document.getElementById('inputScannedToken');
+  const scannerNotepad = document.getElementById('scannerNotepad');
+  const notepadStatusIndicator = document.getElementById('notepadStatusIndicator');
+  const notepadStatusText = document.getElementById('notepadStatusText');
+  const btnFocusNotepad = document.getElementById('btnFocusNotepad');
+  const btnCopyNotepad = document.getElementById('btnCopyNotepad');
+  const btnClearNotepad = document.getElementById('btnClearNotepad');
+  const btnSampleScan = document.getElementById('btnSampleScan');
+  const statScanCount = document.getElementById('statScanCount');
+  const statLastScanTime = document.getElementById('statLastScanTime');
+  const chkAutoVerifyOnScan = document.getElementById('chkAutoVerifyOnScan');
+  const scannedDetailsCard = document.getElementById('scannedDetailsCard');
+  const scannedDetailsContent = document.getElementById('scannedDetailsContent');
+  const badgeScanType = document.getElementById('badgeScanType');
+  const scannedActionRow = document.getElementById('scannedActionRow');
   const btnVerifyCollector = document.getElementById('btnVerifyCollector');
   const collectorVerificationResult = document.getElementById('collectorVerificationResult');
   const badgeOfflineQueueCount = document.getElementById('badgeOfflineQueueCount');
@@ -383,6 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
       selectHandoffOffer.innerHTML = `<option value="">-- No accepted offers available for pickup --</option>`;
       donorDisplayPin.textContent = '--- ---';
       donorDisplayToken.textContent = 'Accept an offer to activate rotating cryptographic code';
+      renderDonorQr(null);
       return;
     }
 
@@ -605,9 +622,52 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // TAB 3: ROTATING 60s CRYPTO HANDOFF & OFFLINE VERIFIER
   // ==========================================
+  let donorQrInstance = null;
+  let totalScanCount = 0;
+
+  function renderDonorQr(token) {
+    if (!token || token.includes('---') || token.includes('Accept an offer')) {
+      if (donorQrCanvas) donorQrCanvas.innerHTML = '<span style="font-size:0.7rem; color:#64748b;">No active offer selected</span>';
+      return;
+    }
+
+    // Attempt client-side QRCode.js render for 100% offline support
+    if (window.QRCode && donorQrCanvas) {
+      try {
+        if (!donorQrInstance) {
+          donorQrCanvas.innerHTML = '';
+          donorQrInstance = new QRCode(donorQrCanvas, {
+            text: token,
+            width: 140,
+            height: 140,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        } else {
+          donorQrInstance.makeCode(token);
+        }
+        return;
+      } catch (err) {
+        console.warn('QRCode.js render fallback:', err);
+      }
+    }
+
+    // Image API fallback
+    if (donorQrCodeImg) {
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=6&data=${encodeURIComponent(token)}`;
+      if (donorQrCodeImg.src !== qrUrl) {
+        donorQrCodeImg.src = qrUrl;
+      }
+    }
+  }
+
   async function updateHandoffToken() {
     const val = selectHandoffOffer.value;
-    if (!val) return;
+    if (!val) {
+      renderDonorQr(null);
+      return;
+    }
     const [donationId, offerCode] = val.split('|');
 
     try {
@@ -625,6 +685,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const circumference = 339.29;
       const offset = circumference - (tokenData.secondsRemaining / 60) * circumference;
       timerCircleProgress.style.strokeDashoffset = offset;
+
+      // Render on-screen scannable QR Code
+      renderDonorQr(tokenData.token);
     } catch (err) {
       console.error('Error updating rotating code:', err);
     }
@@ -637,10 +700,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   selectHandoffOffer.addEventListener('change', () => {
     updateHandoffToken();
-  });
-
-  btnCopyTokenToScanner.addEventListener('click', () => {
-    inputScannedToken.value = donorDisplayToken.textContent;
   });
 
   // Network Offline Simulation Toggle
@@ -667,7 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     offlineQueueList.innerHTML = '';
-    queue.forEach((item, idx) => {
+    queue.forEach((item) => {
       const div = document.createElement('div');
       div.style.background = 'rgba(255, 255, 255, 0.04)';
       div.style.borderRadius = '4px';
@@ -690,9 +749,247 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderOfflineQueue();
 
-  // Collector Verifies Code Offline
-  btnVerifyCollector.addEventListener('click', async () => {
-    const tokenStr = inputScannedToken.value.trim();
+  // ----------------------------------------------------
+  // Barcode / QR Scanner Notepad & Live Details Inspector
+  // ----------------------------------------------------
+  function parseScannedCode(rawStr) {
+    const trimmed = (rawStr || '').trim();
+    if (!trimmed) return null;
+
+    // Check if it's a FoodRelay Cryptographic Token: FR1.<donationId>.<offerCode>.<meals>.<epochWindow>.<sig>
+    const parts = trimmed.split('.');
+    if (parts.length === 6 && parts[0] === 'FR1') {
+      const [prefix, donationId, offerCode, mealsStr, epochWindowStr, signature] = parts;
+      const meals = parseInt(mealsStr, 10);
+      const tokenEpochWindow = parseInt(epochWindowStr, 10);
+      const currentWindow = Math.floor(Date.now() / 60000);
+      const windowDiff = Math.abs(currentWindow - tokenEpochWindow);
+
+      let windowStatusText = '';
+      let windowPillClass = '';
+      if (windowDiff === 0) {
+        windowStatusText = '🟢 Active (Current 60s Window)';
+        windowPillClass = 'pill-valid';
+      } else if (windowDiff === 1) {
+        windowStatusText = '🟡 Tolerated Drift (+/- 1 Window)';
+        windowPillClass = 'pill-drift';
+      } else {
+        windowStatusText = `🔴 Expired (${windowDiff}m ago)`;
+        windowPillClass = 'pill-expired';
+      }
+
+      return {
+        type: 'FOODRELAY_TOKEN',
+        raw: trimmed,
+        prefix,
+        donationId,
+        offerCode,
+        meals: isNaN(meals) ? mealsStr : meals,
+        tokenEpochWindow,
+        currentWindow,
+        windowDiff,
+        windowStatusText,
+        windowPillClass,
+        signature,
+        scannedAt: new Date().toLocaleTimeString()
+      };
+    }
+
+    // Check if JSON
+    if ((trimmed.startsWith('{') && trimmed.endsWith('}')) || (trimmed.startsWith('[') && trimmed.endsWith(']'))) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        return {
+          type: 'JSON_PAYLOAD',
+          raw: trimmed,
+          json: parsed,
+          scannedAt: new Date().toLocaleTimeString()
+        };
+      } catch (e) {}
+    }
+
+    // Check if URL
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+      return {
+        type: 'URL_PAYLOAD',
+        raw: trimmed,
+        scannedAt: new Date().toLocaleTimeString()
+      };
+    }
+
+    // Generic Barcode / Text
+    return {
+      type: 'GENERIC_BARCODE',
+      raw: trimmed,
+      length: trimmed.length,
+      scannedAt: new Date().toLocaleTimeString()
+    };
+  }
+
+  function renderEmptyDetails() {
+    if (!badgeScanType || !scannedDetailsContent) return;
+    badgeScanType.textContent = 'Awaiting Scan';
+    badgeScanType.style.background = 'rgba(255, 255, 255, 0.08)';
+    badgeScanType.style.color = 'var(--text-dim)';
+    scannedDetailsContent.innerHTML = `
+      <div class="details-empty-state">
+        <div style="font-size: 1.8rem; margin-bottom: 0.35rem; opacity: 0.6;">📡</div>
+        <div style="font-weight: 600; color: var(--text-muted);">No QR Code Scanned Yet</div>
+        <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 0.2rem;">
+          Point your physical handheld scanner at the QR code or click "Sample Scan" to view decoded details.
+        </div>
+      </div>
+    `;
+    if (scannedActionRow) scannedActionRow.style.display = 'none';
+  }
+
+  function renderScannedDetails(detail) {
+    if (!detail) {
+      renderEmptyDetails();
+      return;
+    }
+
+    if (detail.type === 'FOODRELAY_TOKEN') {
+      badgeScanType.textContent = '🍱 FoodRelay Signed Token';
+      badgeScanType.style.background = 'rgba(16, 185, 129, 0.2)';
+      badgeScanType.style.color = 'var(--primary-light)';
+
+      scannedDetailsContent.innerHTML = `
+        <div class="qr-details-grid">
+          <div class="detail-badge-row">
+            <span class="detail-pill pill-fr">🍱 Valid Token Format</span>
+            <span class="detail-pill ${detail.windowPillClass}">${detail.windowStatusText}</span>
+            <span class="detail-pill pill-meals">🍲 ${detail.meals} Meals Reserved</span>
+          </div>
+
+          <div class="detail-table">
+            <div class="detail-row">
+              <span class="detail-key">Donation ID:</span>
+              <span class="detail-val" style="color: var(--primary-light); font-weight: 700;">${detail.donationId}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Offer Code:</span>
+              <span class="detail-val" style="color: var(--accent-blue); font-family: var(--font-mono); font-weight: 700;">${detail.offerCode}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Surplus Meals:</span>
+              <span class="detail-val" style="font-weight: 600;">${detail.meals} Portions</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Rotating Slot:</span>
+              <span class="detail-val" style="font-family: var(--font-mono); font-size: 0.7rem;">Window #${detail.tokenEpochWindow}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">HMAC-SHA256 Signature:</span>
+              <span class="detail-val hash-pill">${detail.signature}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Full Token String:</span>
+              <span class="detail-val font-mono break-all" style="font-size: 0.65rem; color: var(--text-dim);">${detail.raw}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Scanned At:</span>
+              <span class="detail-val" style="font-size: 0.7rem; color: var(--text-muted);">${detail.scannedAt}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      if (scannedActionRow) scannedActionRow.style.display = 'block';
+    } else if (detail.type === 'JSON_PAYLOAD') {
+      badgeScanType.textContent = '{ } JSON Payload';
+      badgeScanType.style.background = 'rgba(168, 85, 247, 0.2)';
+      badgeScanType.style.color = 'var(--accent-purple)';
+
+      scannedDetailsContent.innerHTML = `
+        <div class="qr-details-grid">
+          <div class="detail-badge-row">
+            <span class="detail-pill" style="background: rgba(168, 85, 247, 0.2); color: var(--accent-purple);">Structured Data</span>
+            <span class="detail-pill pill-meals">${detail.raw.length} bytes</span>
+          </div>
+          <div class="detail-table">
+            <pre style="font-family: var(--font-mono); font-size: 0.72rem; color: #e2e8f0; white-space: pre-wrap; margin: 0;">${JSON.stringify(detail.json, null, 2)}</pre>
+          </div>
+        </div>
+      `;
+      if (scannedActionRow) scannedActionRow.style.display = 'none';
+    } else if (detail.type === 'URL_PAYLOAD') {
+      badgeScanType.textContent = '🔗 Web Link';
+      badgeScanType.style.background = 'rgba(56, 189, 248, 0.2)';
+      badgeScanType.style.color = 'var(--accent-blue)';
+
+      scannedDetailsContent.innerHTML = `
+        <div class="qr-details-grid">
+          <div class="detail-badge-row">
+            <span class="detail-pill" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue);">Hyperlink</span>
+          </div>
+          <div class="detail-table">
+            <div class="detail-row">
+              <span class="detail-key">Target URL:</span>
+              <span class="detail-val"><a href="${detail.raw}" target="_blank" style="color: var(--accent-blue);">${detail.raw}</a></span>
+            </div>
+          </div>
+        </div>
+      `;
+      if (scannedActionRow) scannedActionRow.style.display = 'none';
+    } else {
+      badgeScanType.textContent = '🏷️ Barcode / Text';
+      badgeScanType.style.background = 'rgba(255, 255, 255, 0.1)';
+      badgeScanType.style.color = '#fff';
+
+      scannedDetailsContent.innerHTML = `
+        <div class="qr-details-grid">
+          <div class="detail-badge-row">
+            <span class="detail-pill" style="background: rgba(255, 255, 255, 0.1); color: #fff;">Raw Decoded Barcode</span>
+            <span class="detail-pill pill-meals">${detail.length} chars</span>
+          </div>
+          <div class="detail-table">
+            <div class="detail-row">
+              <span class="detail-key">Decoded Payload:</span>
+              <span class="detail-val font-mono break-all">${detail.raw}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Scanned At:</span>
+              <span class="detail-val" style="color: var(--text-muted);">${detail.scannedAt}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      if (scannedActionRow) scannedActionRow.style.display = 'none';
+    }
+  }
+
+  async function handleScannedCode(rawCode) {
+    if (!rawCode || !rawCode.trim()) return;
+    const clean = rawCode.trim();
+
+    totalScanCount++;
+    if (statScanCount) statScanCount.textContent = `${totalScanCount} scan${totalScanCount === 1 ? '' : 's'} recorded`;
+    if (statLastScanTime) statLastScanTime.textContent = `Last scan: ${new Date().toLocaleTimeString()}`;
+
+    // Flash status dot
+    if (notepadStatusIndicator && notepadStatusText) {
+      notepadStatusIndicator.className = 'notepad-status scanning';
+      notepadStatusText.textContent = 'Scan Captured!';
+      setTimeout(() => {
+        notepadStatusIndicator.className = 'notepad-status ready';
+        notepadStatusText.textContent = 'Scanner Ready';
+      }, 1200);
+    }
+
+    // Keep hidden compatibility input synchronized
+    if (inputScannedToken) inputScannedToken.value = clean;
+
+    // Parse and show details in inspector
+    const details = parseScannedCode(clean);
+    renderScannedDetails(details);
+
+    // Auto-verify if checkbox is checked
+    if (chkAutoVerifyOnScan && chkAutoVerifyOnScan.checked && details && details.type === 'FOODRELAY_TOKEN') {
+      await executeOfflineVerification(clean);
+    }
+  }
+
+  async function executeOfflineVerification(tokenStr) {
     if (!tokenStr) {
       alert('Please paste or scan a rotating handoff token first.');
       return;
@@ -731,7 +1028,149 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>`;
     }
+  }
+
+  // Rapid keystroke hardware scanner listener (captures physical USB/Bluetooth barcode scanner bursts)
+  let hwBuffer = '';
+  let hwLastTime = 0;
+
+  window.addEventListener('keydown', (e) => {
+    // Check if user is typing in a form input other than scannerNotepad
+    const active = document.activeElement;
+    const isOtherInput = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA') && active !== scannerNotepad;
+    if (isOtherInput) return;
+
+    const now = Date.now();
+    const interval = now - hwLastTime;
+    hwLastTime = now;
+
+    if (e.key === 'Enter') {
+      if (hwBuffer.length >= 4 && interval < 65) {
+        // Barcode scanner transmission ended with Enter!
+        const scannedText = hwBuffer.trim();
+        hwBuffer = '';
+
+        if (scannerNotepad) {
+          const val = scannerNotepad.value;
+          scannerNotepad.value = val ? (val.endsWith('\n') ? val + scannedText + '\n' : val + '\n' + scannedText + '\n') : scannedText + '\n';
+          scannerNotepad.scrollTop = scannerNotepad.scrollHeight;
+        }
+
+        handleScannedCode(scannedText);
+        e.preventDefault();
+        return;
+      }
+      hwBuffer = '';
+    } else if (e.key && e.key.length === 1) {
+      if (interval < 65 || hwBuffer.length === 0) {
+        hwBuffer += e.key;
+      } else {
+        hwBuffer = e.key;
+      }
+    }
   });
+
+  // Direct events on the notepad textarea (when user scans or types while notepad is focused)
+  if (scannerNotepad) {
+    scannerNotepad.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        setTimeout(() => {
+          const lines = scannerNotepad.value.split('\n').filter(l => l.trim().length > 0);
+          if (lines.length > 0) {
+            const lastLine = lines[lines.length - 1];
+            handleScannedCode(lastLine);
+          }
+        }, 20);
+      }
+    });
+
+    scannerNotepad.addEventListener('input', () => {
+      const lines = scannerNotepad.value.split('\n').filter(l => l.trim().length > 0);
+      if (lines.length > 0) {
+        const lastLine = lines[lines.length - 1];
+        if (inputScannedToken) inputScannedToken.value = lastLine;
+        const details = parseScannedCode(lastLine);
+        renderScannedDetails(details);
+      } else {
+        renderEmptyDetails();
+      }
+    });
+  }
+
+  // Notepad Toolbar Buttons
+  if (btnFocusNotepad && scannerNotepad) {
+    btnFocusNotepad.addEventListener('click', () => {
+      scannerNotepad.focus();
+      scannerNotepad.setSelectionRange(scannerNotepad.value.length, scannerNotepad.value.length);
+      if (notepadStatusIndicator && notepadStatusText) {
+        notepadStatusIndicator.className = 'notepad-status ready';
+        notepadStatusText.textContent = 'Notepad Focused';
+      }
+    });
+  }
+
+  if (btnCopyNotepad && scannerNotepad) {
+    btnCopyNotepad.addEventListener('click', () => {
+      if (!scannerNotepad.value.trim()) return;
+      navigator.clipboard.writeText(scannerNotepad.value).then(() => {
+        const orig = btnCopyNotepad.innerHTML;
+        btnCopyNotepad.innerHTML = '✅ Copied!';
+        setTimeout(() => { btnCopyNotepad.innerHTML = orig; }, 1500);
+      });
+    });
+  }
+
+  if (btnClearNotepad && scannerNotepad) {
+    btnClearNotepad.addEventListener('click', () => {
+      scannerNotepad.value = '';
+      if (inputScannedToken) inputScannedToken.value = '';
+      totalScanCount = 0;
+      if (statScanCount) statScanCount.textContent = '0 scans recorded';
+      if (statLastScanTime) statLastScanTime.textContent = 'Notepad cleared';
+      renderEmptyDetails();
+      if (collectorVerificationResult) collectorVerificationResult.innerHTML = '';
+    });
+  }
+
+  if (btnSampleScan && scannerNotepad) {
+    btnSampleScan.addEventListener('click', () => {
+      let tokenToScan = donorDisplayToken ? donorDisplayToken.textContent : '';
+      if (!tokenToScan || tokenToScan.includes('---') || tokenToScan.includes('Accept an offer')) {
+        const currentWindow = Math.floor(Date.now() / 60000);
+        tokenToScan = `FR1.DON-9011.RELAY-890.50.${currentWindow}.4A8C1F9E3D2B`;
+      }
+
+      const cur = scannerNotepad.value;
+      scannerNotepad.value = cur ? (cur.endsWith('\n') ? cur + tokenToScan + '\n' : cur + '\n' + tokenToScan + '\n') : tokenToScan + '\n';
+      scannerNotepad.scrollTop = scannerNotepad.scrollHeight;
+      handleScannedCode(tokenToScan);
+    });
+  }
+
+  // Transfer code button on donor card
+  if (btnCopyTokenToScanner && scannerNotepad) {
+    btnCopyTokenToScanner.addEventListener('click', () => {
+      const token = donorDisplayToken ? donorDisplayToken.textContent : '';
+      if (!token || token.includes('---') || token.includes('Accept an offer')) return;
+
+      const cur = scannerNotepad.value;
+      scannerNotepad.value = cur ? (cur.endsWith('\n') ? cur + token + '\n' : cur + '\n' + token + '\n') : token + '\n';
+      scannerNotepad.scrollTop = scannerNotepad.scrollHeight;
+      handleScannedCode(token);
+    });
+  }
+
+  // Manual verify button
+  if (btnVerifyCollector) {
+    btnVerifyCollector.addEventListener('click', async () => {
+      let tokenStr = (inputScannedToken ? inputScannedToken.value.trim() : '');
+      if (!tokenStr && scannerNotepad) {
+        const lines = scannerNotepad.value.split('\n').filter(l => l.trim().length > 0);
+        if (lines.length > 0) tokenStr = lines[lines.length - 1].trim();
+      }
+      await executeOfflineVerification(tokenStr);
+    });
+  }
 
   // Reconcile Offline Queue with Event Log
   btnReconcileQueue.addEventListener('click', async () => {
