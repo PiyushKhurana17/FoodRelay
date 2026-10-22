@@ -33,10 +33,16 @@ const { CryptoHandoff, PILOT_SECRET } = require('./cryptoHandoff');
 const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
+
+// Health check endpoint for cloud platforms (Render, etc.)
+app.get(['/health', '/api/health'], (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString(), uptime: process.uptime() });
+});
 
 // Initialize Core Engines
 const eventStore = new EventStore(path.join(__dirname, '../data/event-log.json'));
@@ -386,10 +392,13 @@ app.post('/api/demo/seed', (req, res) => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, HOST, () => {
   console.log(`=======================================================`);
   console.log(`FoodRelay (Team Vayu9) Hackathon Server Running`);
-  console.log(`Port: http://localhost:${PORT}`);
+  console.log(`Host: http://${HOST}:${PORT}`);
+  console.log(`Health Check: http://${HOST}:${PORT}/health`);
   console.log(`Twist: "The Cascade & Offline Handoff" Engine Active`);
   console.log(`=======================================================`);
 });
+
+module.exports = app;
