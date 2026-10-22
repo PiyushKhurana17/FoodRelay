@@ -1083,24 +1083,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // TOP BAR SEED & RESET
   // ==========================================
-  btnSeedDemo.addEventListener('click', async () => {
-    btnSeedDemo.disabled = true;
-    try {
-      const res = await fetch('/api/demo/seed', { method: 'POST' });
-      const data = await res.json();
-      offlineVerifier.clearScannedHashes();
-      offlineVerifier.clearOfflineQueue();
-      renderOfflineQueue();
+  if (btnSeedDemo) {
+    btnSeedDemo.addEventListener('click', async () => {
+      btnSeedDemo.disabled = true;
+      try {
+        const res = await fetch('/api/demo/seed', { method: 'POST' });
+        const data = await res.json();
+        offlineVerifier.clearScannedHashes();
+        offlineVerifier.clearOfflineQueue();
+        renderOfflineQueue();
 
-      addSmsMessage('incoming', '[FoodRelay Alert] Seeded active donation batch of 60 meals. Offer dispatched to highest ranked recipient.');
-      await fetchProjections();
-      await fetchEvents();
-    } catch (err) {
-      alert('Error seeding demo: ' + err.message);
-    } finally {
-      btnSeedDemo.disabled = false;
-    }
-  });
+        addSmsMessage('incoming', '[FoodRelay Alert] Seeded active donation batch of 60 meals. Offer dispatched to highest ranked recipient.');
+        await fetchProjections();
+        await fetchEvents();
+      } catch (err) {
+        alert('Error seeding demo: ' + err.message);
+      } finally {
+        btnSeedDemo.disabled = false;
+      }
+    });
+  }
 
   btnResetData.addEventListener('click', async () => {
     if (!confirm('Are you sure you want to reset all data and event logs?')) return;
