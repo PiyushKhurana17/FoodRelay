@@ -1,0 +1,1304 @@
+[
+  {
+    "id": "EVT-1792606882053-LRWEL",
+    "sequence": 1,
+    "prevHash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "6604760c223bd66fa1f842dcfd05b9eb1dc4084b13b6f95ef84ff829823deef8",
+    "type": "DONATION_CREATED",
+    "payload": {
+      "donationId": "DON-9011",
+      "canteenName": "Central Campus Canteen Block 4",
+      "foodName": "Fresh Rice, Dal Makhani & Roti surplus",
+      "foodType": "Veg",
+      "meals": 60,
+      "safePickupHours": 2,
+      "safePickupExpiresAt": "2026-10-21T20:21:22.053Z",
+      "mode": "CASCADE",
+      "donorLocation": {
+        "lat": 28.535,
+        "lng": 77.391,
+        "address": "Campus Cafeteria Block 4"
+      }
+    },
+    "metadata": {
+      "source": "SEED",
+      "recordedAt": "2026-10-21T18:21:22.053Z"
+    }
+  },
+  {
+    "id": "EVT-1792606882055-5MD5O",
+    "sequence": 2,
+    "prevHash": "6604760c223bd66fa1f842dcfd05b9eb1dc4084b13b6f95ef84ff829823deef8",
+    "hash": "1c906025295eeec078d0df31633df0d48c8a1f73c39aced8e234155ccf28219e",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-890",
+      "donationId": "DON-9011",
+      "parentOfferCode": null,
+      "recipientId": "REC-001",
+      "recipientName": "Asha Community Shelter & Kitchen",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:31:22.054Z",
+      "rankScore": 0.8523,
+      "cascadeRound": 1,
+      "scoringBreakdown": {
+        "urgency": 0.2058,
+        "distance": 0.2485,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.048
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Initial offer dispatch",
+      "recordedAt": "2026-10-21T18:21:22.055Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146473-URM3G",
+    "sequence": 3,
+    "prevHash": "1c906025295eeec078d0df31633df0d48c8a1f73c39aced8e234155ccf28219e",
+    "hash": "844e15fc6b0e9e80aca7fe514ca647373f06359598f0496fb38ef1b9670bebed",
+    "type": "DONATION_CREATED",
+    "payload": {
+      "donationId": "DON-146473",
+      "canteenName": "North Campus Central Canteen",
+      "foodName": "Fresh Paneer Butter Masala & Rice Surplus",
+      "foodType": "Veg",
+      "meals": 40,
+      "safePickupHours": 2,
+      "safePickupExpiresAt": "2026-10-21T20:25:46.473Z",
+      "mode": "CASCADE",
+      "donorLocation": {
+        "lat": 28.535,
+        "lng": 77.391,
+        "address": "Campus Cafeteria Block 3"
+      }
+    },
+    "metadata": {
+      "source": "CANTEEN_PORTAL",
+      "recordedAt": "2026-10-21T18:25:46.473Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146480-9YX3G",
+    "sequence": 4,
+    "prevHash": "844e15fc6b0e9e80aca7fe514ca647373f06359598f0496fb38ef1b9670bebed",
+    "hash": "20f012d1dc6e2c70a8b3df1d9273aa8d51f19893818e38e8e8c8d3a9bdf6f359",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-587",
+      "donationId": "DON-146473",
+      "parentOfferCode": null,
+      "recipientId": "REC-003",
+      "recipientName": "Hope Children Care Foundation",
+      "meals": 40,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:35:46.480Z",
+      "rankScore": 0.8293,
+      "cascadeRound": 1,
+      "scoringBreakdown": {
+        "urgency": 0.2095,
+        "distance": 0.2208,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.049
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Initial offer dispatch",
+      "recordedAt": "2026-10-21T18:25:46.480Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146491-OQ3FY",
+    "sequence": 5,
+    "prevHash": "20f012d1dc6e2c70a8b3df1d9273aa8d51f19893818e38e8e8c8d3a9bdf6f359",
+    "hash": "dfa678ad81274bab59f69632b81b7671ff8a87b2db2c3319a27a14762f100b1d",
+    "type": "DONATION_CREATED",
+    "payload": {
+      "donationId": "DON-146491",
+      "canteenName": "North Campus Central Canteen",
+      "foodName": "Fresh Paneer Butter Masala & Rice Surplus",
+      "foodType": "Veg",
+      "meals": 50,
+      "safePickupHours": 2,
+      "safePickupExpiresAt": "2026-10-21T20:25:46.491Z",
+      "mode": "CASCADE",
+      "donorLocation": {
+        "lat": 28.535,
+        "lng": 77.391,
+        "address": "Campus Cafeteria Block 3"
+      }
+    },
+    "metadata": {
+      "source": "CANTEEN_PORTAL",
+      "recordedAt": "2026-10-21T18:25:46.491Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146493-ZRORF",
+    "sequence": 6,
+    "prevHash": "dfa678ad81274bab59f69632b81b7671ff8a87b2db2c3319a27a14762f100b1d",
+    "hash": "083aa0b80d4ae32cc38fe47eb98dc757472cb323a279cdce9ec436339472ffd5",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-674",
+      "donationId": "DON-146491",
+      "parentOfferCode": null,
+      "recipientId": "REC-002",
+      "recipientName": "Jan Seva Food Bank",
+      "meals": 50,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:35:46.493Z",
+      "rankScore": 0.8069,
+      "cascadeRound": 1,
+      "scoringBreakdown": {
+        "urgency": 0.1937,
+        "distance": 0.2172,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.046
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Initial offer dispatch",
+      "recordedAt": "2026-10-21T18:25:46.493Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146506-Y4PQZ",
+    "sequence": 7,
+    "prevHash": "083aa0b80d4ae32cc38fe47eb98dc757472cb323a279cdce9ec436339472ffd5",
+    "hash": "c2b2cca40f75dee8ccdef072fb2cbee554fd923f7730219720151719bc9eb9ce",
+    "type": "OFFER_REJECTED",
+    "payload": {
+      "offerCode": "RELAY-674",
+      "donationId": "DON-146491",
+      "recipientId": "REC-002",
+      "meals": 50,
+      "reason": "Jury Test Rejection"
+    },
+    "metadata": {
+      "source": "SMS_GATEWAY",
+      "recordedAt": "2026-10-21T18:25:46.506Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146508-4WP1O",
+    "sequence": 8,
+    "prevHash": "c2b2cca40f75dee8ccdef072fb2cbee554fd923f7730219720151719bc9eb9ce",
+    "hash": "401e98dea4793a598685d9dddca25a7d13dbf11485f9f5dfffe99d72d30d0f72",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-248",
+      "donationId": "DON-146491",
+      "parentOfferCode": "RELAY-674",
+      "recipientId": "REC-005",
+      "recipientName": "Prabhat Youth Mission",
+      "meals": 50,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:35:46.508Z",
+      "rankScore": 0.7783,
+      "cascadeRound": 2,
+      "scoringBreakdown": {
+        "urgency": 0.1993,
+        "distance": 0.182,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.047
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:25:46.508Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146517-ESWQ8",
+    "sequence": 9,
+    "prevHash": "401e98dea4793a598685d9dddca25a7d13dbf11485f9f5dfffe99d72d30d0f72",
+    "hash": "326fd16bc52dcd01e14e8bfcaf4e1b446c9cf1ef8413e6861866c8489ffe8008",
+    "type": "DONATION_CREATED",
+    "payload": {
+      "donationId": "DON-146517",
+      "canteenName": "North Campus Central Canteen",
+      "foodName": "Fresh Paneer Butter Masala & Rice Surplus",
+      "foodType": "Veg",
+      "meals": 50,
+      "safePickupHours": 2,
+      "safePickupExpiresAt": "2026-10-21T20:25:46.517Z",
+      "mode": "CASCADE",
+      "donorLocation": {
+        "lat": 28.535,
+        "lng": 77.391,
+        "address": "Campus Cafeteria Block 3"
+      }
+    },
+    "metadata": {
+      "source": "CANTEEN_PORTAL",
+      "recordedAt": "2026-10-21T18:25:46.517Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146519-7290E",
+    "sequence": 10,
+    "prevHash": "326fd16bc52dcd01e14e8bfcaf4e1b446c9cf1ef8413e6861866c8489ffe8008",
+    "hash": "7d2938ac25c0a02fba0852fc8ad6d6c6f043c1385b083c965d9b259154b5f4e8",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-907",
+      "donationId": "DON-146517",
+      "parentOfferCode": null,
+      "recipientId": "REC-002",
+      "recipientName": "Jan Seva Food Bank",
+      "meals": 50,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:35:46.519Z",
+      "rankScore": 0.8069,
+      "cascadeRound": 1,
+      "scoringBreakdown": {
+        "urgency": 0.1937,
+        "distance": 0.2172,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.046
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Initial offer dispatch",
+      "recordedAt": "2026-10-21T18:25:46.519Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146531-O2GKF",
+    "sequence": 11,
+    "prevHash": "7d2938ac25c0a02fba0852fc8ad6d6c6f043c1385b083c965d9b259154b5f4e8",
+    "hash": "18e7f7baba787b5b8cbf72642773519ba0add5da849db79a0768635e6ae0481f",
+    "type": "OFFER_ACCEPTED",
+    "payload": {
+      "offerCode": "RELAY-907",
+      "donationId": "DON-146517",
+      "recipientId": "REC-002",
+      "recipientName": "Jan Seva Food Bank",
+      "mealsAccepted": 30,
+      "acceptedAt": "2026-10-21T18:25:46.531Z"
+    },
+    "metadata": {
+      "source": "SMS_GATEWAY",
+      "recordedAt": "2026-10-21T18:25:46.531Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146533-ROPOL",
+    "sequence": 12,
+    "prevHash": "18e7f7baba787b5b8cbf72642773519ba0add5da849db79a0768635e6ae0481f",
+    "hash": "d28b51ce30ea65ff5997191683bc96cce05912a3ef40a35cd48e952c45448da1",
+    "type": "OFFER_SPLIT",
+    "payload": {
+      "originalOfferCode": "RELAY-907",
+      "acceptedOfferCode": "RELAY-907",
+      "remainingOfferCode": "RELAY-907-B",
+      "donationId": "DON-146517",
+      "acceptedMeals": 30,
+      "remainingMeals": 20,
+      "splitAt": "2026-10-21T18:25:46.533Z"
+    },
+    "metadata": {
+      "source": "MESSAGING_GRAMMAR",
+      "recordedAt": "2026-10-21T18:25:46.533Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146534-W00K1",
+    "sequence": 13,
+    "prevHash": "d28b51ce30ea65ff5997191683bc96cce05912a3ef40a35cd48e952c45448da1",
+    "hash": "243a6a611b05f72288c183983b3b95d505d3a2f2868248699ad07ee5c67945e1",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-730",
+      "donationId": "DON-146517",
+      "parentOfferCode": "RELAY-907",
+      "recipientId": "REC-001",
+      "recipientName": "Asha Community Shelter & Kitchen",
+      "meals": 20,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:35:46.534Z",
+      "rankScore": 0.8523,
+      "cascadeRound": 2,
+      "scoringBreakdown": {
+        "urgency": 0.2058,
+        "distance": 0.2485,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.048
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:25:46.534Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146545-60ZS2",
+    "sequence": 14,
+    "prevHash": "243a6a611b05f72288c183983b3b95d505d3a2f2868248699ad07ee5c67945e1",
+    "hash": "466a88838050ff8bf868cc25d329ac2114aa4fb5f9b72a9a01b0dedd2d3f4008",
+    "type": "DONATION_CREATED",
+    "payload": {
+      "donationId": "DON-146545",
+      "canteenName": "North Campus Central Canteen",
+      "foodName": "Fresh Paneer Butter Masala & Rice Surplus",
+      "foodType": "Veg",
+      "meals": 60,
+      "safePickupHours": 2,
+      "safePickupExpiresAt": "2026-10-21T20:25:46.545Z",
+      "mode": "CASCADE",
+      "donorLocation": {
+        "lat": 28.535,
+        "lng": 77.391,
+        "address": "Campus Cafeteria Block 3"
+      }
+    },
+    "metadata": {
+      "source": "CANTEEN_PORTAL",
+      "recordedAt": "2026-10-21T18:25:46.545Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146547-0BDEB",
+    "sequence": 15,
+    "prevHash": "466a88838050ff8bf868cc25d329ac2114aa4fb5f9b72a9a01b0dedd2d3f4008",
+    "hash": "e8e739ef10eee96d71499a86273f4c88f9f2016d6be015687c1deb6d0172eea6",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-714",
+      "donationId": "DON-146545",
+      "parentOfferCode": null,
+      "recipientId": "REC-002",
+      "recipientName": "Jan Seva Food Bank",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:35:46.547Z",
+      "rankScore": 0.8069,
+      "cascadeRound": 1,
+      "scoringBreakdown": {
+        "urgency": 0.1937,
+        "distance": 0.2172,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.046
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Initial offer dispatch",
+      "recordedAt": "2026-10-21T18:25:46.547Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146549-5H9V9",
+    "sequence": 16,
+    "prevHash": "e8e739ef10eee96d71499a86273f4c88f9f2016d6be015687c1deb6d0172eea6",
+    "hash": "319712021d57bde9aee8a4067586a2909c44f9c69e3a891046efe63ce362280e",
+    "type": "DONATION_CREATED",
+    "payload": {
+      "donationId": "DON-146549",
+      "canteenName": "North Campus Central Canteen",
+      "foodName": "Fresh Paneer Butter Masala & Rice Surplus",
+      "foodType": "Veg",
+      "meals": 60,
+      "safePickupHours": 2,
+      "safePickupExpiresAt": "2026-10-21T20:25:46.549Z",
+      "mode": "CASCADE",
+      "donorLocation": {
+        "lat": 28.535,
+        "lng": 77.391,
+        "address": "Campus Cafeteria Block 3"
+      }
+    },
+    "metadata": {
+      "source": "CANTEEN_PORTAL",
+      "recordedAt": "2026-10-21T18:25:46.549Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146550-XXDDL",
+    "sequence": 17,
+    "prevHash": "319712021d57bde9aee8a4067586a2909c44f9c69e3a891046efe63ce362280e",
+    "hash": "08380ac57f3a95573efa926f85437ea85bff8ce61dcf19eb1ac22bf02a279b7b",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-678",
+      "donationId": "DON-146549",
+      "parentOfferCode": null,
+      "recipientId": "REC-004",
+      "recipientName": "Santosh Night Shelter",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:35:46.550Z",
+      "rankScore": 0.7392,
+      "cascadeRound": 1,
+      "scoringBreakdown": {
+        "urgency": 0.1787,
+        "distance": 0.1665,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.044
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Initial offer dispatch",
+      "recordedAt": "2026-10-21T18:25:46.550Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146570-43LV0",
+    "sequence": 18,
+    "prevHash": "08380ac57f3a95573efa926f85437ea85bff8ce61dcf19eb1ac22bf02a279b7b",
+    "hash": "f029cf7d5d10ef1d02f9aff284510a50ba500dacfa66af9276ed6fe43134afb6",
+    "type": "DONATION_CREATED",
+    "payload": {
+      "donationId": "DON-146570",
+      "canteenName": "North Campus Central Canteen",
+      "foodName": "Fresh Paneer Butter Masala & Rice Surplus",
+      "foodType": "Veg",
+      "meals": 25,
+      "safePickupHours": 2,
+      "safePickupExpiresAt": "2026-10-21T20:25:46.570Z",
+      "mode": "CASCADE",
+      "donorLocation": {
+        "lat": 28.535,
+        "lng": 77.391,
+        "address": "Campus Cafeteria Block 3"
+      }
+    },
+    "metadata": {
+      "source": "CANTEEN_PORTAL",
+      "recordedAt": "2026-10-21T18:25:46.570Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146572-8PL5O",
+    "sequence": 19,
+    "prevHash": "f029cf7d5d10ef1d02f9aff284510a50ba500dacfa66af9276ed6fe43134afb6",
+    "hash": "a328e6dda3dd67f8038ac21997ccf8d418ad8780b8e4790c9422cb9fbb8c7f44",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-420",
+      "donationId": "DON-146570",
+      "parentOfferCode": null,
+      "recipientId": "REC-002",
+      "recipientName": "Jan Seva Food Bank",
+      "meals": 25,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:35:46.572Z",
+      "rankScore": 0.8069,
+      "cascadeRound": 1,
+      "scoringBreakdown": {
+        "urgency": 0.1937,
+        "distance": 0.2172,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.046
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Initial offer dispatch",
+      "recordedAt": "2026-10-21T18:25:46.572Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146578-G01DM",
+    "sequence": 20,
+    "prevHash": "a328e6dda3dd67f8038ac21997ccf8d418ad8780b8e4790c9422cb9fbb8c7f44",
+    "hash": "5eb657a4ac75cb164b1f182323cecefe163ce4ecef01db6be8b1db91daacd5b9",
+    "type": "OFFER_ACCEPTED",
+    "payload": {
+      "offerCode": "RELAY-420",
+      "donationId": "DON-146570",
+      "recipientId": "REC-002",
+      "recipientName": "Jan Seva Food Bank",
+      "mealsAccepted": 25,
+      "acceptedAt": "2026-10-21T18:25:46.578Z"
+    },
+    "metadata": {
+      "source": "SMS_GATEWAY",
+      "recordedAt": "2026-10-21T18:25:46.578Z"
+    }
+  },
+  {
+    "id": "EVT-1792607146628-PBWYR",
+    "sequence": 21,
+    "prevHash": "5eb657a4ac75cb164b1f182323cecefe163ce4ecef01db6be8b1db91daacd5b9",
+    "hash": "eb6374d91de56b66dbc512459014ea199c765cf5c341fe0742fdeefd12484a45",
+    "type": "DONATION_COLLECTED",
+    "payload": {
+      "donationId": "DON-146570",
+      "offerCode": "RELAY-420",
+      "recipientId": "REC-002",
+      "mealsCollected": 25,
+      "handoffCodeHash": "7dae47c06507718cb74019f614d1b70ebaab35ed0eace60ed982d4532af7165c",
+      "verifiedOffline": true,
+      "collectedAt": "2026-10-21T18:25:46.601Z"
+    },
+    "metadata": {
+      "source": "OFFLINE_RECONCILER",
+      "recordedAt": "2026-10-21T18:25:46.628Z"
+    }
+  },
+  {
+    "id": "EVT-1792607484529-S8WYN",
+    "sequence": 22,
+    "prevHash": "eb6374d91de56b66dbc512459014ea199c765cf5c341fe0742fdeefd12484a45",
+    "hash": "14372e326889067bc7c656f204470ba953605ed85342cba203d310048877c346",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-890",
+      "donationId": "DON-9011",
+      "recipientId": "REC-001",
+      "meals": 60,
+      "expiredAt": "2026-10-21T18:31:24.528Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:31:24.529Z"
+    }
+  },
+  {
+    "id": "EVT-1792607484536-EM30N",
+    "sequence": 23,
+    "prevHash": "14372e326889067bc7c656f204470ba953605ed85342cba203d310048877c346",
+    "hash": "d4ee8d1de5ba5077fc70e1f158665162763c9a0bfc7f7fe07e3a6cd4c037690d",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-959",
+      "donationId": "DON-9011",
+      "parentOfferCode": "RELAY-890",
+      "recipientId": "REC-003",
+      "recipientName": "Hope Children Care Foundation",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:41:24.536Z",
+      "rankScore": 0.6555,
+      "cascadeRound": 2,
+      "scoringBreakdown": {
+        "urgency": 0.2191,
+        "distance": 0.2208,
+        "capacity": 0.0167,
+        "compatibility": 0.15,
+        "reliability": 0.049
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:31:24.536Z"
+    }
+  },
+  {
+    "id": "EVT-1792607749101-I5Z4C",
+    "sequence": 24,
+    "prevHash": "d4ee8d1de5ba5077fc70e1f158665162763c9a0bfc7f7fe07e3a6cd4c037690d",
+    "hash": "979fba945401054550d6da40c4f18a49952eab11cd052ecdd9f36638d1b47ed3",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-678",
+      "donationId": "DON-146549",
+      "recipientId": "REC-004",
+      "meals": 60,
+      "expiredAt": "2026-10-21T18:35:49.101Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:35:49.101Z"
+    }
+  },
+  {
+    "id": "EVT-1792607749104-51AEB",
+    "sequence": 25,
+    "prevHash": "979fba945401054550d6da40c4f18a49952eab11cd052ecdd9f36638d1b47ed3",
+    "hash": "b5cfba19bb48c4e82659431f7d414d4dde9f231dd1d91e43120be27847a905c5",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-280",
+      "donationId": "DON-146549",
+      "parentOfferCode": "RELAY-678",
+      "recipientId": "REC-001",
+      "recipientName": "Asha Community Shelter & Kitchen",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:45:49.104Z",
+      "rankScore": 0.8619,
+      "cascadeRound": 2,
+      "scoringBreakdown": {
+        "urgency": 0.2154,
+        "distance": 0.2485,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.048
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:35:49.104Z"
+    }
+  },
+  {
+    "id": "EVT-1792607749105-VK7TT",
+    "sequence": 26,
+    "prevHash": "b5cfba19bb48c4e82659431f7d414d4dde9f231dd1d91e43120be27847a905c5",
+    "hash": "c095b163a1aef4759df0fc99a22ef990e97b395a505e8699500ad002575a96f3",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-714",
+      "donationId": "DON-146545",
+      "recipientId": "REC-002",
+      "meals": 60,
+      "expiredAt": "2026-10-21T18:35:49.105Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:35:49.105Z"
+    }
+  },
+  {
+    "id": "EVT-1792607749106-RSHQK",
+    "sequence": 27,
+    "prevHash": "c095b163a1aef4759df0fc99a22ef990e97b395a505e8699500ad002575a96f3",
+    "hash": "710bcddecd2783aa31b38bae2c2bf88d3c676c0f292cc213e40654fe504a249f",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-723",
+      "donationId": "DON-146545",
+      "parentOfferCode": "RELAY-714",
+      "recipientId": "REC-004",
+      "recipientName": "Santosh Night Shelter",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:45:49.106Z",
+      "rankScore": 0.7488,
+      "cascadeRound": 2,
+      "scoringBreakdown": {
+        "urgency": 0.1883,
+        "distance": 0.1665,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.044
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:35:49.106Z"
+    }
+  },
+  {
+    "id": "EVT-1792607749109-T59PA",
+    "sequence": 28,
+    "prevHash": "710bcddecd2783aa31b38bae2c2bf88d3c676c0f292cc213e40654fe504a249f",
+    "hash": "4052691c867f70cb1038132cfb2c14fc108dcf02bc31ebd5ef9bc044e6439bbe",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-730",
+      "donationId": "DON-146517",
+      "recipientId": "REC-001",
+      "meals": 20,
+      "expiredAt": "2026-10-21T18:35:49.109Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:35:49.109Z"
+    }
+  },
+  {
+    "id": "EVT-1792607749112-JQW9U",
+    "sequence": 29,
+    "prevHash": "4052691c867f70cb1038132cfb2c14fc108dcf02bc31ebd5ef9bc044e6439bbe",
+    "hash": "6666ea099e0ae30d67742a6fbd94314a832ed98e6841304b7b7399b8ed467a8f",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-248",
+      "donationId": "DON-146491",
+      "recipientId": "REC-005",
+      "meals": 50,
+      "expiredAt": "2026-10-21T18:35:49.112Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:35:49.112Z"
+    }
+  },
+  {
+    "id": "EVT-1792607749112-A5IM6",
+    "sequence": 30,
+    "prevHash": "6666ea099e0ae30d67742a6fbd94314a832ed98e6841304b7b7399b8ed467a8f",
+    "hash": "39ff41f8e44f14b8f94c1867bbbdc422bb4b032b7f7dfdadd72d7a82c5c29b6b",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-739",
+      "donationId": "DON-146491",
+      "parentOfferCode": "RELAY-248",
+      "recipientId": "REC-001",
+      "recipientName": "Asha Community Shelter & Kitchen",
+      "meals": 50,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:45:49.112Z",
+      "rankScore": 0.7419,
+      "cascadeRound": 3,
+      "scoringBreakdown": {
+        "urgency": 0.2154,
+        "distance": 0.2485,
+        "capacity": 0.08,
+        "compatibility": 0.15,
+        "reliability": 0.048
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:35:49.112Z"
+    }
+  },
+  {
+    "id": "EVT-1792607749114-3J4AL",
+    "sequence": 31,
+    "prevHash": "39ff41f8e44f14b8f94c1867bbbdc422bb4b032b7f7dfdadd72d7a82c5c29b6b",
+    "hash": "0097449bcf1881de84c26dddf130801ece4362ff723766428b6ddd3b3b8e46f3",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-587",
+      "donationId": "DON-146473",
+      "recipientId": "REC-003",
+      "meals": 40,
+      "expiredAt": "2026-10-21T18:35:49.114Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:35:49.114Z"
+    }
+  },
+  {
+    "id": "EVT-1792607749115-E8Y3H",
+    "sequence": 32,
+    "prevHash": "0097449bcf1881de84c26dddf130801ece4362ff723766428b6ddd3b3b8e46f3",
+    "hash": "07e449e9a5d43c3832a63cd3834c5bb1a8b3f9aab09aa20ab5b73f426e99867a",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-982",
+      "donationId": "DON-146473",
+      "parentOfferCode": "RELAY-587",
+      "recipientId": "REC-002",
+      "recipientName": "Jan Seva Food Bank",
+      "meals": 40,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:45:49.115Z",
+      "rankScore": 0.8165,
+      "cascadeRound": 2,
+      "scoringBreakdown": {
+        "urgency": 0.2033,
+        "distance": 0.2172,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.046
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:35:49.115Z"
+    }
+  },
+  {
+    "id": "EVT-1792608085806-1HI84",
+    "sequence": 33,
+    "prevHash": "07e449e9a5d43c3832a63cd3834c5bb1a8b3f9aab09aa20ab5b73f426e99867a",
+    "hash": "cfb45978093355b92e88ad2c8be6f8aa05ecdeaabd2882911f9919ad4b8c66e2",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-959",
+      "donationId": "DON-9011",
+      "recipientId": "REC-003",
+      "meals": 60,
+      "expiredAt": "2026-10-21T18:41:25.806Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:41:25.806Z"
+    }
+  },
+  {
+    "id": "EVT-1792608085808-93BNQ",
+    "sequence": 34,
+    "prevHash": "cfb45978093355b92e88ad2c8be6f8aa05ecdeaabd2882911f9919ad4b8c66e2",
+    "hash": "230005dfc18c6c1c262dc3e8dc7cd5fbd6908f3efa10d3d5dd59aa80eabf9cfd",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-702",
+      "donationId": "DON-9011",
+      "parentOfferCode": "RELAY-959",
+      "recipientId": "REC-005",
+      "recipientName": "Prabhat Youth Mission",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:51:25.808Z",
+      "rankScore": 0.766,
+      "cascadeRound": 3,
+      "scoringBreakdown": {
+        "urgency": 0.2203,
+        "distance": 0.182,
+        "capacity": 0.1667,
+        "compatibility": 0.15,
+        "reliability": 0.047
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:41:25.808Z"
+    }
+  },
+  {
+    "id": "EVT-1792608350339-3ZS5Y",
+    "sequence": 35,
+    "prevHash": "230005dfc18c6c1c262dc3e8dc7cd5fbd6908f3efa10d3d5dd59aa80eabf9cfd",
+    "hash": "e048b851dd51a6ade0d9928eb833e2ad2dae77783fd1868ea3a90ee3be8a0b29",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-982",
+      "donationId": "DON-146473",
+      "recipientId": "REC-002",
+      "meals": 40,
+      "expiredAt": "2026-10-21T18:45:50.339Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:45:50.339Z"
+    }
+  },
+  {
+    "id": "EVT-1792608350360-3A5YS",
+    "sequence": 36,
+    "prevHash": "e048b851dd51a6ade0d9928eb833e2ad2dae77783fd1868ea3a90ee3be8a0b29",
+    "hash": "4100cefdd41a152bd21c4b63f73e9945b1822c4237753a3aa000cf2d0f0ee0e9",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-739",
+      "donationId": "DON-146491",
+      "recipientId": "REC-001",
+      "meals": 50,
+      "expiredAt": "2026-10-21T18:45:50.360Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:45:50.360Z"
+    }
+  },
+  {
+    "id": "EVT-1792608350361-UADB7",
+    "sequence": 37,
+    "prevHash": "4100cefdd41a152bd21c4b63f73e9945b1822c4237753a3aa000cf2d0f0ee0e9",
+    "hash": "db03dadb902e1eab3f0b83e876f9463334d24dbf514d1ed459b5ac821e567897",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-217",
+      "donationId": "DON-146491",
+      "parentOfferCode": "RELAY-739",
+      "recipientId": "REC-003",
+      "recipientName": "Hope Children Care Foundation",
+      "meals": 50,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:55:50.361Z",
+      "rankScore": 0.8304,
+      "cascadeRound": 4,
+      "scoringBreakdown": {
+        "urgency": 0.2306,
+        "distance": 0.2208,
+        "capacity": 0.18,
+        "compatibility": 0.15,
+        "reliability": 0.049
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:45:50.361Z"
+    }
+  },
+  {
+    "id": "EVT-1792608350362-IE0SD",
+    "sequence": 38,
+    "prevHash": "db03dadb902e1eab3f0b83e876f9463334d24dbf514d1ed459b5ac821e567897",
+    "hash": "8b86d010b7131e18b147ebc6c902f8b7803933b1c2fdfdcadc50233976707f84",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-723",
+      "donationId": "DON-146545",
+      "recipientId": "REC-004",
+      "meals": 60,
+      "expiredAt": "2026-10-21T18:45:50.362Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:45:50.362Z"
+    }
+  },
+  {
+    "id": "EVT-1792608350363-1L1SC",
+    "sequence": 39,
+    "prevHash": "8b86d010b7131e18b147ebc6c902f8b7803933b1c2fdfdcadc50233976707f84",
+    "hash": "829bd89f8be2adbb705e12c332982a2cb2c4da41b4d48976f7ef1238e1477294",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-327",
+      "donationId": "DON-146545",
+      "parentOfferCode": "RELAY-723",
+      "recipientId": "REC-001",
+      "recipientName": "Asha Community Shelter & Kitchen",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:55:50.363Z",
+      "rankScore": 0.74,
+      "cascadeRound": 3,
+      "scoringBreakdown": {
+        "urgency": 0.2269,
+        "distance": 0.2485,
+        "capacity": 0.0667,
+        "compatibility": 0.15,
+        "reliability": 0.048
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:45:50.363Z"
+    }
+  },
+  {
+    "id": "EVT-1792608350364-OGPVR",
+    "sequence": 40,
+    "prevHash": "829bd89f8be2adbb705e12c332982a2cb2c4da41b4d48976f7ef1238e1477294",
+    "hash": "f4d9e79da297a1bec1ee5bfaf310292d271add18da5eec75185e37a133d6a23f",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-280",
+      "donationId": "DON-146549",
+      "recipientId": "REC-001",
+      "meals": 60,
+      "expiredAt": "2026-10-21T18:45:50.364Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:45:50.364Z"
+    }
+  },
+  {
+    "id": "EVT-1792608350365-JQZH4",
+    "sequence": 41,
+    "prevHash": "f4d9e79da297a1bec1ee5bfaf310292d271add18da5eec75185e37a133d6a23f",
+    "hash": "fa53a5ba57c02389dd89376c2a88a10783eba5cc94649bc65c56a2b4bfcec663",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-208",
+      "donationId": "DON-146549",
+      "parentOfferCode": "RELAY-280",
+      "recipientId": "REC-002",
+      "recipientName": "Jan Seva Food Bank",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T18:55:50.365Z",
+      "rankScore": 0.828,
+      "cascadeRound": 3,
+      "scoringBreakdown": {
+        "urgency": 0.2147,
+        "distance": 0.2172,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.046
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:45:50.365Z"
+    }
+  },
+  {
+    "id": "EVT-1792608687125-JKYFH",
+    "sequence": 42,
+    "prevHash": "fa53a5ba57c02389dd89376c2a88a10783eba5cc94649bc65c56a2b4bfcec663",
+    "hash": "d240306d53f343247f82b7ad1e8a40eff4653508a843f06925108e69a6760726",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-702",
+      "donationId": "DON-9011",
+      "recipientId": "REC-005",
+      "meals": 60,
+      "expiredAt": "2026-10-21T18:51:27.124Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:51:27.125Z"
+    }
+  },
+  {
+    "id": "EVT-1792608687137-3A6XW",
+    "sequence": 43,
+    "prevHash": "d240306d53f343247f82b7ad1e8a40eff4653508a843f06925108e69a6760726",
+    "hash": "5fe80abab56df36eb94358aa07ab148c3d3c5e88c5500f573a56016adc8d4ea8",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-291",
+      "donationId": "DON-9011",
+      "parentOfferCode": "RELAY-702",
+      "recipientId": "REC-004",
+      "recipientName": "Santosh Night Shelter",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T19:01:27.137Z",
+      "rankScore": 0.7744,
+      "cascadeRound": 4,
+      "scoringBreakdown": {
+        "urgency": 0.2139,
+        "distance": 0.1665,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.044
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:51:27.137Z"
+    }
+  },
+  {
+    "id": "EVT-1792608951790-5J38F",
+    "sequence": 44,
+    "prevHash": "5fe80abab56df36eb94358aa07ab148c3d3c5e88c5500f573a56016adc8d4ea8",
+    "hash": "a30453dd46c52169f93fa74bf0a77a3d954c5dd1a8c3457969589d698631609a",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-208",
+      "donationId": "DON-146549",
+      "recipientId": "REC-002",
+      "meals": 60,
+      "expiredAt": "2026-10-21T18:55:51.790Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:55:51.790Z"
+    }
+  },
+  {
+    "id": "EVT-1792608951791-GWCKD",
+    "sequence": 45,
+    "prevHash": "a30453dd46c52169f93fa74bf0a77a3d954c5dd1a8c3457969589d698631609a",
+    "hash": "347573090d1290b09fa7815cb12f04fab614789c7858d7c0d7fab5fe84dd3018",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-931",
+      "donationId": "DON-146549",
+      "parentOfferCode": "RELAY-208",
+      "recipientId": "REC-005",
+      "recipientName": "Prabhat Youth Mission",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T19:05:51.791Z",
+      "rankScore": 0.7801,
+      "cascadeRound": 4,
+      "scoringBreakdown": {
+        "urgency": 0.2344,
+        "distance": 0.182,
+        "capacity": 0.1667,
+        "compatibility": 0.15,
+        "reliability": 0.047
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T18:55:51.791Z"
+    }
+  },
+  {
+    "id": "EVT-1792608951792-2DT0X",
+    "sequence": 46,
+    "prevHash": "347573090d1290b09fa7815cb12f04fab614789c7858d7c0d7fab5fe84dd3018",
+    "hash": "07a3bcd79a4965b60bd0f75d25cdd7cd11e670a4a2feb5cf26ef43ca41873988",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-327",
+      "donationId": "DON-146545",
+      "recipientId": "REC-001",
+      "meals": 60,
+      "expiredAt": "2026-10-21T18:55:51.792Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:55:51.792Z"
+    }
+  },
+  {
+    "id": "EVT-1792608951793-EIK82",
+    "sequence": 47,
+    "prevHash": "07a3bcd79a4965b60bd0f75d25cdd7cd11e670a4a2feb5cf26ef43ca41873988",
+    "hash": "7d01dfbafbd529721b20adaa9642dad6f94c5b107cddacf877275edb8a8acfce",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-217",
+      "donationId": "DON-146491",
+      "recipientId": "REC-003",
+      "meals": 50,
+      "expiredAt": "2026-10-21T18:55:51.793Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T18:55:51.793Z"
+    }
+  },
+  {
+    "id": "EVT-1792609288545-170WZ",
+    "sequence": 48,
+    "prevHash": "7d01dfbafbd529721b20adaa9642dad6f94c5b107cddacf877275edb8a8acfce",
+    "hash": "201d59c7d9de3a52ca1426245f963a693a149211ceecacc198f8e8b91383b15e",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-291",
+      "donationId": "DON-9011",
+      "recipientId": "REC-004",
+      "meals": 60,
+      "expiredAt": "2026-10-21T19:01:28.545Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T19:01:28.545Z"
+    }
+  },
+  {
+    "id": "EVT-1792609288555-XAKA0",
+    "sequence": 49,
+    "prevHash": "201d59c7d9de3a52ca1426245f963a693a149211ceecacc198f8e8b91383b15e",
+    "hash": "d8581982909f7f64960e02c768dbedb510fe173b2c9e3251ee38f34b49544845",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-683",
+      "donationId": "DON-9011",
+      "parentOfferCode": "RELAY-291",
+      "recipientId": "REC-002",
+      "recipientName": "Jan Seva Food Bank",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T19:11:28.555Z",
+      "rankScore": 0.8596,
+      "cascadeRound": 5,
+      "scoringBreakdown": {
+        "urgency": 0.2464,
+        "distance": 0.2172,
+        "capacity": 0.2,
+        "compatibility": 0.15,
+        "reliability": 0.046
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T19:01:28.555Z"
+    }
+  },
+  {
+    "id": "EVT-1792609553116-FQ3ZB",
+    "sequence": 50,
+    "prevHash": "d8581982909f7f64960e02c768dbedb510fe173b2c9e3251ee38f34b49544845",
+    "hash": "5588cc9d2d4c64408367a6b3fbd39cd07c78a25fd12765092d2ddee2c2bfaf9d",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-931",
+      "donationId": "DON-146549",
+      "recipientId": "REC-005",
+      "meals": 60,
+      "expiredAt": "2026-10-21T19:05:53.116Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T19:05:53.116Z"
+    }
+  },
+  {
+    "id": "EVT-1792609553125-50HY0",
+    "sequence": 51,
+    "prevHash": "5588cc9d2d4c64408367a6b3fbd39cd07c78a25fd12765092d2ddee2c2bfaf9d",
+    "hash": "7ddd0023d85d85c83ce1a68be1485ff5aaccf038f62d456eb82bc2134575504c",
+    "type": "OFFER_DISPATCHED",
+    "payload": {
+      "offerCode": "RELAY-643",
+      "donationId": "DON-146549",
+      "parentOfferCode": "RELAY-931",
+      "recipientId": "REC-003",
+      "recipientName": "Hope Children Care Foundation",
+      "meals": 60,
+      "windowDurationSeconds": 600,
+      "expiresAt": "2026-10-21T19:15:53.125Z",
+      "rankScore": 0.832,
+      "cascadeRound": 5,
+      "scoringBreakdown": {
+        "urgency": 0.2622,
+        "distance": 0.2208,
+        "capacity": 0.15,
+        "compatibility": 0.15,
+        "reliability": 0.049
+      }
+    },
+    "metadata": {
+      "source": "CASCADE_ENGINE",
+      "reason": "Cascaded re-offer after rejection/expiry/split",
+      "recordedAt": "2026-10-21T19:05:53.125Z"
+    }
+  },
+  {
+    "id": "EVT-1792609889922-THHC2",
+    "sequence": 52,
+    "prevHash": "7ddd0023d85d85c83ce1a68be1485ff5aaccf038f62d456eb82bc2134575504c",
+    "hash": "a3d12026c5febdc0e4dc94ad20a8b25e0d742c568f8e6736c2008e76007cbacd",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-683",
+      "donationId": "DON-9011",
+      "recipientId": "REC-002",
+      "meals": 60,
+      "expiredAt": "2026-10-21T19:11:29.921Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T19:11:29.921Z"
+    }
+  },
+  {
+    "id": "EVT-1792610154611-FUKUC",
+    "sequence": 53,
+    "prevHash": "a3d12026c5febdc0e4dc94ad20a8b25e0d742c568f8e6736c2008e76007cbacd",
+    "hash": "e3520a60199441d6bb5b74cff9ecafdf36cf781d5afe97d3041086c915f183cc",
+    "type": "OFFER_EXPIRED",
+    "payload": {
+      "offerCode": "RELAY-643",
+      "donationId": "DON-146549",
+      "recipientId": "REC-003",
+      "meals": 60,
+      "expiredAt": "2026-10-21T19:15:54.611Z"
+    },
+    "metadata": {
+      "source": "EXPIRY_TICKER",
+      "recordedAt": "2026-10-21T19:15:54.611Z"
+    }
+  }
+]
