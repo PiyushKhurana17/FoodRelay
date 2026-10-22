@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const juryExecutionLogs = document.getElementById('juryExecutionLogs');
 
   // Top Bar Actions
-  const btnSeedDemo = document.getElementById('btnSeedDemo');
   const btnResetData = document.getElementById('btnResetData');
 
   // ==========================================
@@ -204,8 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderOffers(offers) {
     if (!offers || offers.length === 0) {
       activeOffersContainer.innerHTML = `
-        <div style="text-align: center; padding: 3rem 1rem; color: var(--text-dim);">
-          No offers dispatched yet. Click <strong>"Seed Demo Data"</strong> or create a surplus batch on the left!
+        <div style="text-align: center; padding: 2rem 1rem; color: var(--text-dim);">
+          No active offers. Fill out <strong>"List Surplus Meals"</strong> on the left to dispatch a batch!
         </div>`;
       return;
     }
@@ -1081,28 +1080,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
-  // TOP BAR SEED & RESET
+  // TOP BAR RESET
   // ==========================================
-  if (btnSeedDemo) {
-    btnSeedDemo.addEventListener('click', async () => {
-      btnSeedDemo.disabled = true;
-      try {
-        const res = await fetch('/api/demo/seed', { method: 'POST' });
-        const data = await res.json();
-        offlineVerifier.clearScannedHashes();
-        offlineVerifier.clearOfflineQueue();
-        renderOfflineQueue();
-
-        addSmsMessage('incoming', '[FoodRelay Alert] Seeded active donation batch of 60 meals. Offer dispatched to highest ranked recipient.');
-        await fetchProjections();
-        await fetchEvents();
-      } catch (err) {
-        alert('Error seeding demo: ' + err.message);
-      } finally {
-        btnSeedDemo.disabled = false;
-      }
-    });
-  }
 
   btnResetData.addEventListener('click', async () => {
     if (!confirm('Are you sure you want to reset all data and event logs?')) return;
